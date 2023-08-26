@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/home'; 
+import SignIn from './pages/SignIn'; 
+import Header from './components/navbar/Navbar'; 
+import Footer from './components/footer/Footer'; 
+import "./css/main.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header /> {/* Affiche l'en-tête sur toutes les pages */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/SignIn" element={<SignIn />} /> 
+        </Routes>
+        <Footer /> {/* Affiche le pied de page sur toutes les pages */}
+      </div>
+    </Router>
   );
-}
-
+};
+  
 export default App;
