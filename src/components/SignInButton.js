@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SignInButton = ({ text }) => {
+const SignInButton = ({ text, type }) => {
   return (
-    <button type="submit" className="sign-in-button">
+    <button type={type} className="sign-in-button">
       {text}
     </button>
   );

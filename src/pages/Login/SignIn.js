@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import InputField from '../components/InputField';
-import SignInButton from '../components/SignInButton';
+import InputField from '../../components/InputField';
+import SignInButton from '../../components/SignInButton';
+import { login } from './auth';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -9,20 +10,32 @@ const SignIn = () => {
     rememberMe: false,
   });
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleInputChange = (label, value) => {
     setFormData({ ...formData, [label]: value });
+    setErrorMessage(''); // Réinitialiser le message d'erreur lorsque l'utilisateur modifie le champ
   };
-  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log('Valeurs soumises :', formData);
+    try {
+      const response = await login(formData.username, formData.password);
 
-    // Ici, vous pouvez effectuer la logique de connexion avec formData.username, formData.password, et formData.rememberMe
+      if (response.status === 400) {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || "Error: User not found!");
+      } else {
+        setErrorMessage('');
+        // Gérer la réponse de l'API en cas de succès
+      }
+    } catch (error) {
+      console.error("Erreur de connexion :", error.message);
+      setErrorMessage("Error: User not found!");
+      // Gérer les erreurs de connexion
+    }
   };
-
-  const isFormValid = formData.username.trim() !== '' && formData.password.trim() !== '';
 
   return (
     <div>
@@ -57,8 +70,9 @@ const SignIn = () => {
               />
               <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <SignInButton text="Sign In" className={isFormValid ? 'red-button' : ''} />
+            <SignInButton text="Sign In" type="submit" />
           </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </section>
       </main>
     </div>
