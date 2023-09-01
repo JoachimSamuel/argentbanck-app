@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InputField from '../../components/InputField';
 import SignInButton from '../../components/SignInButton';
-import { login } from './auth';
+import { login, updateAuthToken } from './auth';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -21,19 +21,27 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await login(formData.username, formData.password);
+      const authToken = await login(formData.username, formData.password);
 
-      if (response.status === 400) {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message || "Error: User not found!");
+      if (authToken) {
+        console.log("Connexion réussie ! Token d'authentification :", authToken);
+
+        // Vérifiez si "Remember Me" est coché avant de stocker le token dans le localStorage
+        if (formData.rememberMe) {
+          updateAuthToken(authToken);
+        }
+
+        // Vous pouvez également stocker le token dans Redux ici pour une utilisation courante
+        // Pendant la session en cours.
+
+        // Autres traitements
+
       } else {
-        setErrorMessage('');
-        // Gérer la réponse de l'API en cas de succès
+        setErrorMessage("Token d'authentification manquant dans la réponse.");
       }
     } catch (error) {
-      console.error("Erreur de connexion :", error.message);
-      setErrorMessage("Error: User not found!");
-      // Gérer les erreurs de connexion
+      console.error("Erreur lors de la connexion :", error);
+      setErrorMessage("Erreur inattendue lors de la connexion !");
     }
   };
 
