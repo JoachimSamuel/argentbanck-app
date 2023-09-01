@@ -1,11 +1,10 @@
-// components/SignInButton.js
 import React from 'react';
 
-const SignInButton = ({ text, link }) => {
+const SignInButton = ({ text }) => {
   return (
-    <a href={link} className="sign-in-button">
+    <button type="submit" className="sign-in-button">
       {text}
-    </a>
+    </button>
   );
 };
 

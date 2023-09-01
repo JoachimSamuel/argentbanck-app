@@ -10,12 +10,12 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Header /> {/* Affiche l'en-tête sur toutes les pages */}
+        <Header /> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/SignIn" element={<SignIn />} /> 
         </Routes>
-        <Footer /> {/* Affiche le pied de page sur toutes les pages */}
+        <Footer /> 
       </div>
     </Router>
   );
