@@ -1,0 +1,69 @@
+.expandable-div {
+    display: flex;
+    flex-direction: column;
+    background-color: #42b983;
+    color: white;
+    transition: width 0.3s, height 0.3s;
+    cursor: pointer;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    border-radius: 0.5rem;
+  }
+  
+  .expanded {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .additional-info {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+
+  .additional-info p {
+    text-align: start;
+    margin-top: 1rem;
+  }
+  .test{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .additional-info-p{
+    display: flex;
+  }
+
+  
+input[readonly] {
+    background-color: transparent;
+    color: white;
+    border: none;
+    margin-left: 14rem;
+  }
+  
+  
+  input:not([readonly]) {
+    background-color: white;
+  }
+
+  select[disabled] {
+    background-color: transparent;
+    color: white;
+    border: none;
+    appearance: none;
+    margin-left: 14rem;
+  }
+  
+  select:not([disabled]) {
+    background-color: white;
+  }
+.input-contenair{
+    display: flex;
+    align-items: center;
+  }
+

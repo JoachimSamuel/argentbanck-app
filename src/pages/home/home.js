@@ -1,7 +1,7 @@
 import React from 'react';
-import Hero from '../components/Hero'
-import FeatureItem from '../components/FeatureItem'; 
-import featuresData from '../data/featureData.json'; 
+import Hero from '../../components/Hero'
+import FeatureItem from '../../components/FeatureItem'; 
+import featuresData from '../../data/featureData.json'; 
 const Home = () => {
   console.log(featuresData);
   

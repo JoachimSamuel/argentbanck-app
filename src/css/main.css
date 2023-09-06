@@ -308,4 +308,11 @@ html {
     font-size: 14px;
     margin-top: 5px;
   }
+
+.category-title{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 6rem;
+  margin-right:  rem;
+}
   
