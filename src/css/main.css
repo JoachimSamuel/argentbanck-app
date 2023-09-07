@@ -316,3 +316,19 @@ html {
   margin-right:  rem;
 }
   
+
+.userPage-contenair{
+background-color:#12002b;
+padding-top: 1rem;
+padding-bottom: 1rem;
+}
+
+.custom-button{
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
