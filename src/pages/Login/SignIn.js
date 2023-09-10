@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InputField from '../../components/InputField';
 import SignInButton from '../../components/SignInButton';
 import { login, updateAuthToken } from './auth';
+import { useDispatch } from 'react-redux';
+import { saveAuthToken } from '../../action/authAction';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -14,7 +20,7 @@ const SignIn = () => {
 
   const handleInputChange = (label, value) => {
     setFormData({ ...formData, [label]: value });
-    setErrorMessage(''); // Réinitialiser le message d'erreur lorsque l'utilisateur modifie le champ
+    setErrorMessage('');
   };
 
   const handleSubmit = async (event) => {
@@ -26,16 +32,15 @@ const SignIn = () => {
       if (authToken) {
         console.log("Connexion réussie ! Token d'authentification :", authToken);
 
-        // Vérifiez si "Remember Me" est coché avant de stocker le token dans le localStorage
         if (formData.rememberMe) {
           updateAuthToken(authToken);
         }
 
-        // Vous pouvez également stocker le token dans Redux ici pour une utilisation courante
-        // Pendant la session en cours.
+        dispatch(saveAuthToken(authToken));
 
-        // Autres traitements
-
+        console.log("La fonction navigate est appelée !");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        navigate('/User');
       } else {
         setErrorMessage("Token d'authentification manquant dans la réponse.");
       }

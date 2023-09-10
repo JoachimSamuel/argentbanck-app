@@ -1,5 +1,3 @@
-// auth.js
-
 // Fonction pour mettre à jour le token dans le localStorage
 export const updateAuthToken = (newAuthToken) => {
     localStorage.setItem("authToken", newAuthToken);
